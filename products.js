@@ -4,6 +4,11 @@ function safeHttpUrl(value){
   try{const url=new URL(value,window.location.href);return ['http:','https:'].includes(url.protocol)?url.href:null}catch{return null}
 }
 
+function formatPrice(value){
+  if(typeof value==='number'&&Number.isFinite(value))return `${new Intl.NumberFormat('ko-KR').format(value)}원`;
+  return String(value??'가격 문의');
+}
+
 function createProductCard(product){
   const card=document.createElement('article');
   card.className='product-card catalog-card';
@@ -29,7 +34,7 @@ function createProductCard(product){
   title.textContent=product.name;
   const price=document.createElement('p');
   price.className='catalog-price';
-  price.textContent=product.price;
+  price.textContent=formatPrice(product.price);
   const link=document.createElement('a');
   link.className='button button-primary buy-button';
   link.textContent='구매하기 ↗';

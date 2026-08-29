@@ -1,26 +1,62 @@
 [
   {
-    "name": "카카오프렌즈 드리밍 DIY 펜꽂이 · 춘식이",
-    "price": "5,780원",
-    "image": "product-images/chunsik-diy-pen-holder.jpg",
-    "url": "https://www.coupang.com/vp/products/8600728806?itemId=24939098367&vendorItemId=94822883389"
+    "name": "카카오프렌즈 춘식이 아동 방한 장갑",
+    "price": 9900,
+    "image": "product-images/kakao-kids-winter-gloves.png",
+    "url": "https://www.coupang.com/vp/products/8425060706"
   },
   {
-    "name": "[조구만] NEW 리무버블 빅 스티커",
-    "price": "4,500원",
+    "name": "카카오프렌즈 룸 슬리퍼 · 어피치",
+    "price": 14900,
+    "image": "product-images/kakao-apeach-room-slippers.jpg",
+    "url": "https://www.coupang.com/vp/products/8904142581"
+  },
+  {
+    "name": "카카오프렌즈 드리밍 DIY 펜꽂이 · 춘식이",
+    "price": 5760,
+    "image": "product-images/chunsik-diy-pen-holder.jpg",
+    "url": "https://www.coupang.com/vp/products/8600728806"
+  },
+  {
+    "name": "[조구만] NEW 리무버블 빅 스티커 · F. 스테고",
+    "price": 4500,
     "image": "product-images/joguman-big-sticker-f-stego.jpg",
-    "url": "https://www.coupang.com/vp/products/9467190936?itemId=28175224589&vendorItemId=95129984303"
+    "url": "https://www.coupang.com/vp/products/9467190936"
+  },
+  {
+    "name": "카카오프렌즈 세이치즈 샤프식 지우개 · 라이언",
+    "price": 3050,
+    "image": "product-images/kakao-ryan-knock-eraser.jpg",
+    "url": "https://www.coupang.com/vp/products/8978785476"
+  },
+  {
+    "name": "리틀 카카오프렌즈 러블리 미니 플랫 펜슬케이스 · 리틀무지",
+    "price": 6740,
+    "image": "product-images/little-muji-flat-pencil-case.png",
+    "url": "https://www.coupang.com/vp/products/7881126280"
+  },
+  {
+    "name": "카카오 리틀프렌즈 키즈 인형 힙색",
+    "price": 15000,
+    "image": "product-images/little-friends-kids-hip-sack.jpg",
+    "url": "https://www.coupang.com/vp/products/5977291345"
   },
   {
     "name": "카카오프렌즈 3색 볼펜 0.7mm · 네오",
-    "price": "4,100원",
-    "image": "product-images/kakao-3color-pen.png",
-    "url": "https://www.coupang.com/vp/products/8861678234?itemId=25842713858"
+    "price": 3820,
+    "image": "product-images/kakao-neo-3color-pen.png",
+    "url": "https://www.coupang.com/vp/products/1694654141"
   },
   {
-    "name": "카카오프렌즈 춘식이 오디너리 패브릭 플랫 필통",
-    "price": "6,150원",
-    "image": "product-images/chunsik-flat-pencil-case.jpg",
-    "url": "https://www.coupang.com/vp/products/8600737579?itemId=24939133419"
+    "name": "춘식이 극세사 수면바지",
+    "price": 10000,
+    "image": "product-images/chunsik-fleece-pajama-pants.jpg",
+    "url": "https://www.coupang.com/vp/products/7687460777"
+  },
+  {
+    "name": "아트박스 조구만 플랫 파우치 · 아이보리",
+    "price": 10600,
+    "image": "product-images/joguman-flat-pouch-ivory.jpg",
+    "url": "https://www.coupang.com/vp/products/8275625825"
   }
 ]
