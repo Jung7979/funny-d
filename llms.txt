@@ -1,0 +1,16 @@
+# Funny D
+
+> Funny D는 귀여운 문구를 좋아하는 학생과 직장인을 위해 정품과 품질을 기준으로 캐릭터 문구를 소개합니다.
+
+## 주요 페이지
+
+- [홈](https://github-funny-d-update-20260829.vercel.app/): Funny D 소개와 대표 제품, 최신 이야기
+- [내 소개](https://github-funny-d-update-20260829.vercel.app/about.html): 브랜드를 운영하는 사람과 약속
+- [제품](https://github-funny-d-update-20260829.vercel.app/products.html): 현재 판매 중인 캐릭터 문구
+- [이야기](https://github-funny-d-update-20260829.vercel.app/story/): 상품 선택과 사용에 관한 글
+
+## 최신 이야기
+
+- [카카오프렌즈 DIY 펜꽂이는 겨울철에 어떻게 보관하나요?](https://github-funny-d-update-20260829.vercel.app/story/diy-pen-holder-winter-storage.html): 놓을 자리, 이동, 먼지 관리 순서
+- [캐릭터 문구를 처음 고를 때 무엇이 가장 어려웠나요?](https://github-funny-d-update-20260829.vercel.app/story/choosing-first-character-stationery.html): 정품과 품질을 기준으로 고른 이야기
+- [캐릭터 DIY 펜꽂이를 고를 때 무엇을 확인해야 하나요?](https://github-funny-d-update-20260829.vercel.app/story/character-diy-pen-holder-checklist.html): 구매 전 확인할 네 가지 기준
