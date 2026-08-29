@@ -4,6 +4,7 @@
   var reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
   var isPortrait = matchMedia('(max-width: 880px)').matches;
   var isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
+  var viewportUnit = window.CSS && CSS.supports && CSS.supports('height', '100svh') ? 'svh' : 'vh';
   var clamp = function (value, min, max) { return value < min ? min : value > max ? max : value; };
 
   function build(section) {
@@ -54,7 +55,7 @@
     }
 
     section.classList.add('rd-scrub--live');
-    section.style.height = ((screens + 1) * 100) + 'svh';
+    section.style.height = ((screens + 1) * 100) + viewportUnit;
     var state = { video: null, ready: false, loading: false, target: 0, current: 0 };
 
     function load() {
