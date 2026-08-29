@@ -9,6 +9,43 @@ function formatPrice(value){
   return String(value??'가격 문의');
 }
 
+function setProductStructuredData(products,featuredOnly){
+  const current=document.querySelector('script[data-product-schema]');
+  if(current)current.remove();
+  const itemListElement=products.map((product,index)=>{
+    const image=safeHttpUrl(product.image);
+    const purchaseUrl=safeHttpUrl(product.url);
+    const price=Number(product.price);
+    const item={
+      '@type':'Product',
+      name:String(product.name||''),
+      ...(image?{image}:{})
+    };
+    if(purchaseUrl)item.url=purchaseUrl;
+    if(purchaseUrl&&Number.isFinite(price)&&price>0){
+      item.offers={
+        '@type':'Offer',
+        priceCurrency:'KRW',
+        price:String(price),
+        url:purchaseUrl,
+        seller:{'@type':'Organization','@id':'https://github-funny-d-update-20260829.vercel.app/#organization',name:'Funny D'}
+      };
+    }
+    return {'@type':'ListItem',position:index+1,item};
+  });
+  if(!itemListElement.length)return;
+  const script=document.createElement('script');
+  script.type='application/ld+json';
+  script.dataset.productSchema='';
+  script.textContent=JSON.stringify({
+    '@context':'https://schema.org',
+    '@type':'ItemList',
+    name:featuredOnly?'Funny D 대표 제품':'Funny D 캐릭터 문구 제품',
+    itemListElement
+  });
+  document.head.append(script);
+}
+
 function createProductCard(product){
   const card=document.createElement('article');
   card.className='product-card catalog-card';
@@ -64,6 +101,8 @@ async function renderProducts(){
     if(!response.ok)throw new Error(`HTTP ${response.status}`);
     const products=await response.json();
     if(!Array.isArray(products)||!products.length)throw new Error('상품 데이터가 비어 있습니다.');
+    let schemaItems=products;
+    let schemaFeaturedOnly=false;
     lists.forEach(list=>{
       const limit=Number.parseInt(list.dataset.limit||'',10);
       const featuredProducts=products
@@ -71,8 +110,11 @@ async function renderProducts(){
         .sort((a,b)=>(Number(a.featuredOrder)||999)-(Number(b.featuredOrder)||999));
       const source=list.dataset.featured==='true'&&featuredProducts.length?featuredProducts:products;
       const items=Number.isFinite(limit)?source.slice(0,limit):source;
+      schemaItems=items;
+      schemaFeaturedOnly=list.dataset.featured==='true';
       list.replaceChildren(...items.map(createProductCard));
     });
+    setProductStructuredData(schemaItems,schemaFeaturedOnly);
   }catch(error){
     lists.forEach(list=>{const status=document.createElement('p');status.className='catalog-status catalog-error';status.textContent='상품 정보를 불러오지 못했습니다. 잠시 후 다시 확인해 주세요.';list.replaceChildren(status)});
     console.error('상품 데이터 로딩 실패:',error);

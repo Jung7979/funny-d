@@ -32,9 +32,11 @@
   }
 
   function setMeta(post){
-    const title=String(post.title||'이야기');const description=String(post.description||post.summary||'').slice(0,160);const canonical=location.href.split('#')[0];const author=String(post.author||'').trim();
+    const title=String(post.title||'이야기');const description=String(post.description||post.summary||'').slice(0,160);const canonical=post.url?new URL(String(post.url),location.href).href:location.href.split('#')[0];const author=String(post.author||'').trim();
     document.title=`${title} | Funny D`;document.querySelector('meta[name="description"]').content=description;document.querySelector('meta[name="author"]').content=author;document.querySelector('link[rel="canonical"]').href=canonical;document.querySelector('meta[property="og:title"]').content=title;document.querySelector('meta[property="og:description"]').content=description;document.querySelector('meta[property="og:url"]').content=canonical;
-    const ld=document.createElement('script');ld.type='application/ld+json';ld.textContent=JSON.stringify({'@context':'https://schema.org','@type':'BlogPosting',headline:title,description,datePublished:String(post.date||''),dateModified:String(post.updated||post.date||''),mainEntityOfPage:canonical,keywords:Array.isArray(post.tags)?post.tags.map(String).join(', '):'',...(author?{author:{'@type':'Person',name:author}}:{})});document.head.append(ld);
+    const ld=document.createElement('script');ld.type='application/ld+json';ld.textContent=JSON.stringify({'@context':'https://schema.org','@type':'BlogPosting',headline:title,description,datePublished:String(post.date||''),dateModified:String(post.updated||post.date||''),mainEntityOfPage:canonical,inLanguage:'ko-KR',publisher:{'@type':'Organization','@id':'https://github-funny-d-update-20260829.vercel.app/#organization',name:'Funny D'},keywords:Array.isArray(post.tags)?post.tags.map(String).join(', '):'',...(author?{author:{'@type':'Person',name:author}}:{})});document.head.append(ld);
+    const faq=Array.isArray(post.faq)?post.faq.filter(item=>item&&item.q&&item.a):[];
+    if(faq.length){const faqLd=document.createElement('script');faqLd.type='application/ld+json';faqLd.textContent=JSON.stringify({'@context':'https://schema.org','@type':'FAQPage',mainEntity:faq.map(item=>({'@type':'Question',name:String(item.q),acceptedAnswer:{'@type':'Answer',text:String(item.a)}}))});document.head.append(faqLd)}
   }
 
   function renderFaq(items){const section=el('section','blog-faq');section.append(el('h2',null,'자주 묻는 질문'));items.forEach(item=>{const details=el('details');details.append(el('summary',null,String(item.q)),el('p',null,String(item.a)));section.append(details)});return section}
