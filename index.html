@@ -9,8 +9,9 @@
   <link rel="icon" href="funny-d-logo.png">
   <link rel="stylesheet" href="styles.css">
   <link rel="stylesheet" href="catalog.css">
+  <link rel="stylesheet" href="assets/scrub.css">
 </head>
-<body>
+<body class="home-page">
   <a class="skip-link" href="#main">본문 바로가기</a>
   <header class="site-header">
     <a class="logo" href="#home" aria-label="Funny D 홈"><img src="funny-d-logo.png" alt="Funny D"></a>
@@ -19,20 +20,24 @@
   </header>
 
   <main id="main">
-    <section id="home" class="hero">
-      <div class="hero-copy reveal">
-        <p class="kicker"><span>NEW</span> 작은 즐거움을 쓰고, 붙이고, 모아요</p>
-        <h1>오늘을 귀엽게<br><em>기록하는 방법</em></h1>
-        <p class="lead">Funny D는 보기만 해도 기분 좋아지는 캐릭터 문구를 만들어요. 평범한 책상 위에 조그만 웃음 하나를 더해드릴게요.</p>
-        <div class="hero-actions"><a class="button button-primary" href="#products">대표 제품 보기 <b>↗</b></a><a class="button button-ghost" href="about.html">브랜드 이야기</a></div>
-        <ul class="mini-points" aria-label="브랜드 특징"><li>감성 디자인</li><li>부드러운 색감</li><li>실용적인 쓰임</li></ul>
+    <section id="home" class="rd-scrub"
+      data-clip="assets/hero-scrub.mp4"
+      data-clip-m="assets/hero-scrub-m.mp4"
+      data-poster="assets/hero-poster.jpg"
+      data-poster-m="assets/hero-poster-m.jpg"
+      data-scroll="3"
+      data-cue="스크롤">
+      <div class="rd-scrub__band" data-a="0" data-b="0.45">
+        <span class="rd-scrub__kicker">FUNNY D · CUTE STATIONERY</span>
+        <h1>오늘을 귀엽게<br>기록하는 방법</h1>
+        <p>Funny D는 보기만 해도 기분 좋아지는 캐릭터 문구를 소개합니다.</p>
       </div>
-      <div class="hero-board reveal" aria-label="Funny D 파스텔 무드보드">
-        <div class="board-note note-yellow"><span>오늘도<br>재미있게!</span><i>✿</i></div>
-        <div class="board-note note-pink"><span>Funny<br>:Day</span><i>♥</i></div>
-        <div class="board-note note-blue"><span>little<br>happy</span><i>☁</i></div>
-        <div class="tape tape-one"></div><div class="tape tape-two"></div>
-        <p class="scribble">make your day funny!</p>
+      <div class="rd-scrub__band" data-a="0.5" data-b="1">
+        <span class="rd-scrub__kicker">LITTLE HAPPY THINGS</span>
+        <h2>책상 위에<br>조그만 웃음 하나</h2>
+        <p>정품과 품질을 꼼꼼히 살핀 캐릭터 문구로 오늘의 기록을 시작해보세요.</p>
+        <a class="rd-scrub__btn" href="#products">대표 제품 보기 <b>↗</b></a>
+        <a class="rd-scrub__btn rd-scrub__btn--ghost" href="about.html">브랜드 이야기</a>
       </div>
     </section>
 
@@ -70,5 +75,6 @@
   <script src="script.js"></script>
   <script src="products.js"></script>
   <script src="stories.js"></script>
+  <script src="assets/scrub.js" defer></script>
 </body>
 </html>
