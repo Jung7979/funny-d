@@ -66,7 +66,11 @@ async function renderProducts(){
     if(!Array.isArray(products)||!products.length)throw new Error('상품 데이터가 비어 있습니다.');
     lists.forEach(list=>{
       const limit=Number.parseInt(list.dataset.limit||'',10);
-      const items=Number.isFinite(limit)?products.slice(0,limit):products;
+      const featuredProducts=products
+        .filter(product=>product.featured===true)
+        .sort((a,b)=>(Number(a.featuredOrder)||999)-(Number(b.featuredOrder)||999));
+      const source=list.dataset.featured==='true'&&featuredProducts.length?featuredProducts:products;
+      const items=Number.isFinite(limit)?source.slice(0,limit):source;
       list.replaceChildren(...items.map(createProductCard));
     });
   }catch(error){

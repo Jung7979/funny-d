@@ -9,13 +9,17 @@
     "name": "카카오프렌즈 룸 슬리퍼 · 어피치",
     "price": 14900,
     "image": "product-images/kakao-apeach-room-slippers.jpg",
-    "url": "https://www.coupang.com/vp/products/8904142581"
+    "url": "https://www.coupang.com/vp/products/8904142581",
+    "featured": true,
+    "featuredOrder": 3
   },
   {
     "name": "카카오프렌즈 드리밍 DIY 펜꽂이 · 춘식이",
     "price": 5760,
     "image": "product-images/chunsik-diy-pen-holder.jpg",
-    "url": "https://www.coupang.com/vp/products/8600728806"
+    "url": "https://www.coupang.com/vp/products/8600728806",
+    "featured": true,
+    "featuredOrder": 2
   },
   {
     "name": "[조구만] NEW 리무버블 빅 스티커 · F. 스테고",
@@ -45,7 +49,9 @@
     "name": "카카오프렌즈 3색 볼펜 0.7mm · 네오",
     "price": 3820,
     "image": "product-images/kakao-neo-3color-pen.png",
-    "url": "https://www.coupang.com/vp/products/1694654141"
+    "url": "https://www.coupang.com/vp/products/1694654141",
+    "featured": true,
+    "featuredOrder": 1
   },
   {
     "name": "춘식이 극세사 수면바지",
