@@ -15,6 +15,7 @@
       link.append(time,el('h2',null,String(post.title||'(제목 없음)')));
       if(post.summary)link.append(el('p','blog-summary',String(post.summary)));
       if(Array.isArray(post.tags)&&post.tags.length){const tags=el('div','blog-tags');post.tags.forEach(tag=>tags.append(el('span','blog-tag',String(tag))));link.append(tags)}
+      link.append(el('span','blog-read','이야기 읽기 →'));
       item.append(link);list.append(item);
     });
   }
