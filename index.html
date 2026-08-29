@@ -15,7 +15,7 @@
   <header class="site-header">
     <a class="logo" href="#home" aria-label="Funny D 홈"><img src="funny-d-logo.png" alt="Funny D"></a>
     <button class="menu-toggle" type="button" aria-label="메뉴 열기" aria-controls="nav" aria-expanded="false"><span></span><span></span></button>
-    <nav id="nav" class="nav" aria-label="주요 메뉴"><a href="about.html">내 소개</a><a href="products.html">제품</a><a href="#stories">이야기</a><a class="nav-pill" href="#contact">연락하기</a></nav>
+    <nav id="nav" class="nav" aria-label="주요 메뉴"><a href="about.html">내 소개</a><a href="products.html">제품</a><a href="story/">이야기</a><a class="nav-pill" href="#contact">연락하기</a></nav>
   </header>
 
   <main id="main">
@@ -56,11 +56,8 @@
 
     <section id="stories" class="section stories">
       <div class="section-head reveal"><div><div class="section-tag">03 · FUNNY STORIES</div><h2>웃음이 머무는<br><em>작은 이야기</em></h2></div></div>
-      <div class="story-grid">
-        <article class="story story-featured reveal"><div class="story-cover cover-pink"><span>Funny<br>Letter</span><i>01</i></div><div class="story-text"><span>브랜드 이야기 · 2026.08.12</span><h3>우리는 왜 ‘귀여운 문구’를 만들까요?</h3><p>조금 지친 날에도 책상 앞에 앉을 이유가 되어주는 것. Funny D가 생각하는 귀여움의 힘을 이야기해요.</p><a class="arrow-link" href="#contact">읽어보기 <b>→</b></a></div></article>
-        <article class="story reveal"><div class="story-cover cover-yellow"><span>Desk<br>Tour</span><i>02</i></div><div class="story-text"><span>문구 생활 · 2026.07.28</span><h3>작지만 즐거운 데스크테리어 팁</h3><a class="arrow-link" href="#contact">읽어보기 <b>→</b></a></div></article>
-        <article class="story reveal"><div class="story-cover cover-blue"><span>New<br>Friends</span><i>03</i></div><div class="story-text"><span>새 소식 · 2026.07.10</span><h3>Funny D의 첫 캐릭터를 소개합니다</h3><a class="arrow-link" href="#contact">읽어보기 <b>→</b></a></div></article>
-      </div>
+      <div class="story-grid" data-story-list data-limit="3" aria-live="polite"><p class="story-status">최신 이야기를 불러오는 중이에요.</p></div>
+      <a class="button button-dark reveal" href="story/">이야기 더 보기 <b>→</b></a>
     </section>
 
     <section id="contact" class="section contact">
@@ -72,5 +69,6 @@
   <footer><a class="logo" href="#home"><img src="funny-d-logo.png" alt="Funny D"></a><p>오늘을 귀엽게 기록하는 캐릭터 문구 브랜드</p><small>© 2026 Funny D. All rights reserved.</small><a class="top" href="#home">맨 위로 ↑</a></footer>
   <script src="script.js"></script>
   <script src="products.js"></script>
+  <script src="stories.js"></script>
 </body>
 </html>
