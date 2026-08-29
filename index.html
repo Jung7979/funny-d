@@ -8,13 +8,14 @@
   <title>Funny D | 오늘을 귀엽게 기록해요</title>
   <link rel="icon" href="funny-d-logo.png">
   <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="catalog.css">
 </head>
 <body>
   <a class="skip-link" href="#main">본문 바로가기</a>
   <header class="site-header">
     <a class="logo" href="#home" aria-label="Funny D 홈"><img src="funny-d-logo.png" alt="Funny D"></a>
     <button class="menu-toggle" type="button" aria-label="메뉴 열기" aria-controls="nav" aria-expanded="false"><span></span><span></span></button>
-    <nav id="nav" class="nav" aria-label="주요 메뉴"><a href="about.html">내 소개</a><a href="#products">제품</a><a href="#stories">이야기</a><a class="nav-pill" href="#contact">연락하기</a></nav>
+    <nav id="nav" class="nav" aria-label="주요 메뉴"><a href="about.html">내 소개</a><a href="products.html">제품</a><a href="#stories">이야기</a><a class="nav-pill" href="#contact">연락하기</a></nav>
   </header>
 
   <main id="main">
@@ -48,14 +49,9 @@
 
     <section id="products" class="section products">
       <div class="section-head reveal"><div><div class="section-tag">02 · OUR PRODUCTS</div><h2>책상 위의<br><em>작은 친구들</em></h2></div><p>스마트웍스가 판매하는 캐릭터 문구로<br>오늘의 기록을 시작해보세요.</p></div>
-      <div class="filters reveal" role="tablist" aria-label="제품 카테고리"><button class="filter active" type="button" data-filter="all" role="tab" aria-selected="true">전체</button><button class="filter" type="button" data-filter="paper" role="tab" aria-selected="false">노트·메모</button><button class="filter" type="button" data-filter="sticker" role="tab" aria-selected="false">스티커</button><button class="filter" type="button" data-filter="desk" role="tab" aria-selected="false">데스크</button></div>
-      <div class="product-grid">
-        <article class="product-card reveal" data-category="paper"><div class="product-visual visual-pink"><span class="emoji">🗓️</span><p>study with me</p><button class="heart" type="button" aria-label="피카부 스터디 플래너 찜하기" aria-pressed="false">♡</button></div><div class="product-info"><span>PLANNER · 44% OFF</span><h3>[피카부] 상철 스터디 플래너 · 핑크</h3><p class="product-price"><del>₩ 8,800</del><strong>₩ 4,900</strong></p><a class="product-link" href="https://shop.coupang.com/smartworks?platform=p&amp;src=1139998" target="_blank" rel="noopener noreferrer">쿠팡에서 보기 <span>↗</span></a></div></article>
-        <article class="product-card reveal" data-category="sticker"><div class="product-visual visual-yellow"><span class="emoji">🦕</span><p>joguman sticker</p><button class="heart" type="button" aria-label="조구만 리무버블 빅 스티커 찜하기" aria-pressed="false">♡</button></div><div class="product-info"><span>STICKER · 40% OFF</span><h3>[조구만] NEW 리무버블 빅 스티커 · F. 스테고</h3><p class="product-price"><del>₩ 7,500</del><strong>₩ 4,500</strong></p><a class="product-link" href="https://www.coupang.com/vp/products/9467190936?itemId=28175224589&amp;vendorItemId=95129984303" target="_blank" rel="noopener noreferrer">쿠팡에서 보기 <span>↗</span></a></div></article>
-        <article class="product-card reveal" data-category="desk"><div class="product-visual visual-blue"><span class="emoji">✏️</span><p>chunsik desk buddy</p><button class="heart" type="button" aria-label="춘식이 DIY 펜꽂이 찜하기" aria-pressed="false">♡</button></div><div class="product-info"><span>DESK · 16% OFF</span><h3>카카오프렌즈 드리밍 DIY 펜꽂이 · 춘식이</h3><p class="product-price"><del>₩ 6,900</del><strong>₩ 5,760</strong></p><a class="product-link" href="https://www.coupang.com/vp/products/8600728806?itemId=24939098367&amp;vendorItemId=94822883389" target="_blank" rel="noopener noreferrer">쿠팡에서 보기 <span>↗</span></a></div></article>
-      </div>
-      <p class="price-note reveal">표시 가격은 2026년 8월 29일 확인 기준이며, 쿠팡 판매가는 변동될 수 있습니다.</p>
-      <a class="button button-dark reveal" href="https://shop.coupang.com/smartworks?platform=p&amp;src=1139998" target="_blank" rel="noopener noreferrer">쿠팡 스토어 전체 보기 <b>↗</b></a>
+      <div class="product-grid" data-product-list data-limit="3" aria-live="polite"><p class="catalog-status">상품을 불러오는 중이에요.</p></div>
+      <p class="price-note reveal">표시 가격은 확인 시점에 따라 달라질 수 있습니다. 정확한 가격은 쿠팡 상품 페이지에서 확인해 주세요.</p>
+      <a class="button button-dark reveal" href="products.html">제품 전체 보기 <b>→</b></a>
     </section>
 
     <section id="stories" class="section stories">
@@ -75,5 +71,6 @@
 
   <footer><a class="logo" href="#home"><img src="funny-d-logo.png" alt="Funny D"></a><p>오늘을 귀엽게 기록하는 캐릭터 문구 브랜드</p><small>© 2026 Funny D. All rights reserved.</small><a class="top" href="#home">맨 위로 ↑</a></footer>
   <script src="script.js"></script>
+  <script src="products.js"></script>
 </body>
 </html>

@@ -16,8 +16,12 @@
 
 - `index.html`: 사이트 구조와 콘텐츠
 - `about.html`: 판매자 인터뷰를 반영한 내 소개 페이지
+- `products.html`: `products.json` 전체를 불러오는 제품 페이지
+- `products.json`: 제품명, 가격, 이미지 주소, 구매 링크 데이터
+- `products.js`: 홈과 제품 페이지의 상품 카드를 자동 생성하는 스크립트
 - `styles.css`: 디자인 및 반응형 스타일
 - `about.css`: 내 소개 페이지 전용 스타일
+- `catalog.css`: 제품 카드와 제품 페이지 전용 스타일
 - `script.js`: 메뉴, 필터, 찜하기, 폼 인터랙션
 - `funny-d-logo.png`: 브랜드 로고
 
