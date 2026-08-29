@@ -40,7 +40,18 @@ function createProductCard(product){
   link.textContent='구매하기 ↗';
   const purchaseUrl=safeHttpUrl(product.url);
   if(purchaseUrl){link.href=purchaseUrl;link.target='_blank';link.rel='noopener noreferrer'}else{link.href='#';link.setAttribute('aria-disabled','true')}
-  info.append(label,title,price,link);
+  const cartButton=document.createElement('button');
+  cartButton.type='button';
+  cartButton.className='button cart-add-button';
+  cartButton.textContent='장바구니 담기';
+  cartButton.setAttribute('data-cart-add','');
+  cartButton.setAttribute('data-name',String(product.name||''));
+  cartButton.setAttribute('data-price',String(Number(product.price)||0));
+  if(purchaseUrl)cartButton.setAttribute('data-url',purchaseUrl);
+  const actions=document.createElement('div');
+  actions.className='catalog-actions';
+  actions.append(cartButton,link);
+  info.append(label,title,price,actions);
   card.append(visual,info);
   return card;
 }
