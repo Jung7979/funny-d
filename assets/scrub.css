@@ -19,6 +19,17 @@
   color: #fff;
   text-shadow: 0 1px 14px rgba(0, 0, 0, .35);
 }
+.home-page .site-header > .logo {
+  display: inline-flex;
+  align-items: center;
+  padding: 10px 15px;
+  border: 1px solid rgba(255, 255, 255, .14);
+  border-radius: 999px;
+  background: rgba(31, 24, 28, .28);
+  box-shadow: 0 10px 30px rgba(20, 14, 18, .14);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
 .home-page .site-header .nav-pill { border-color: rgba(255, 255, 255, .75); }
 .home-page .menu-toggle span { background: #fff; }
 .rd-scrub { position: relative; background: var(--scrub-bg); color: var(--scrub-ink); }
@@ -109,6 +120,7 @@
   .rd-scrub__copy { padding-bottom: 72px; }
   .rd-scrub__btn { width: 100%; justify-content: center; margin-right: 0; }
   .home-page .nav.open { color: var(--ink); text-shadow: none; }
+  .home-page .site-header > .logo { padding: 8px 11px; }
 }
 @media (prefers-reduced-motion: reduce) {
   .rd-scrub__cue i { animation: none; }
