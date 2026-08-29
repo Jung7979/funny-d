@@ -15,7 +15,9 @@
 ## 파일
 
 - `index.html`: 사이트 구조와 콘텐츠
+- `about.html`: 판매자 인터뷰를 반영한 내 소개 페이지
 - `styles.css`: 디자인 및 반응형 스타일
+- `about.css`: 내 소개 페이지 전용 스타일
 - `script.js`: 메뉴, 필터, 찜하기, 폼 인터랙션
 - `funny-d-logo.png`: 브랜드 로고
 

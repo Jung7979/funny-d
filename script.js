@@ -12,4 +12,5 @@ document.querySelectorAll('.heart').forEach(button=>button.addEventListener('cli
 const observer=new IntersectionObserver(entries=>entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('visible');observer.unobserve(entry.target)}}),{threshold:.1});
 document.querySelectorAll('.reveal').forEach(element=>observer.observe(element));
 
-document.querySelector('#contact-form').addEventListener('submit',event=>{event.preventDefault();event.currentTarget.querySelector('.form-status').textContent='메시지를 받았어요! Funny D가 곧 답장할게요. ♥';event.currentTarget.reset()});
+const contactForm=document.querySelector('#contact-form');
+if(contactForm)contactForm.addEventListener('submit',event=>{event.preventDefault();event.currentTarget.querySelector('.form-status').textContent='메시지를 받았어요! Funny D가 곧 답장할게요. ♥';event.currentTarget.reset()});
