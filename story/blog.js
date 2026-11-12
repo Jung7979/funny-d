@@ -4,11 +4,12 @@
 
   function el(tag,cls,text){const node=document.createElement(tag);if(cls)node.className=cls;if(text!=null)node.textContent=text;return node}
   function fmtDate(value){const date=new Date(`${value}T00:00:00`);if(Number.isNaN(date.getTime()))return String(value||'');return `${date.getFullYear()}. ${date.getMonth()+1}. ${date.getDate()}.`}
-  function hrefOf(post){return post.url?String(post.url):`post.html?id=${encodeURIComponent(post.id||'')}`}
+  function hrefOf(post){return post.url?String(post.url):`${encodeURIComponent(post.id||'')}.html`}
 
   function renderList(posts){
     const sorted=posts.slice().sort((a,b)=>String(b.date||'').localeCompare(String(a.date||'')));
     if(!sorted.length){const empty=el('div','blog-empty');empty.append(el('strong',null,'아직 올라온 글이 없습니다'),document.createTextNode('첫 번째 이야기를 준비하고 있어요. 곧 만나요.'));list.replaceWith(empty);return}
+    list.replaceChildren();
     sorted.forEach(post=>{
       const item=el('li','blog-card');const link=el('a');link.href=hrefOf(post);
       const time=el('time',null,fmtDate(post.date));time.dateTime=String(post.date||'');
@@ -32,9 +33,9 @@
   }
 
   function setMeta(post){
-    const title=String(post.title||'이야기');const description=String(post.description||post.summary||'').slice(0,160);const canonical=post.url?new URL(String(post.url),location.href).href:location.href.split('#')[0];const author=String(post.author||'').trim();
+    const title=String(post.title||'이야기');const description=String(post.description||post.summary||post.body||'').slice(0,160);const canonical=new URL(hrefOf(post),'https://github-funny-d-update-20260829.vercel.app/story/').href;const author=String(post.author||'').trim();
     document.title=`${title} | Funny D`;document.querySelector('meta[name="description"]').content=description;document.querySelector('meta[name="author"]').content=author;document.querySelector('link[rel="canonical"]').href=canonical;document.querySelector('meta[property="og:title"]').content=title;document.querySelector('meta[property="og:description"]').content=description;document.querySelector('meta[property="og:url"]').content=canonical;
-    const ld=document.createElement('script');ld.type='application/ld+json';ld.textContent=JSON.stringify({'@context':'https://schema.org','@type':'BlogPosting',headline:title,description,datePublished:String(post.date||''),dateModified:String(post.updated||post.date||''),mainEntityOfPage:canonical,inLanguage:'ko-KR',publisher:{'@type':'Organization','@id':'https://github-funny-d-update-20260829.vercel.app/#organization',name:'Funny D'},keywords:Array.isArray(post.tags)?post.tags.map(String).join(', '):'',...(author?{author:{'@type':'Person',name:author}}:{})});document.head.append(ld);
+    const ld=document.createElement('script');ld.type='application/ld+json';ld.textContent=JSON.stringify({'@context':'https://schema.org','@type':'BlogPosting',headline:title,description,datePublished:String(post.date||''),dateModified:String(post.updated||post.date||''),mainEntityOfPage:canonical,inLanguage:'ko-KR',publisher:{'@type':'Organization','@id':'https://github-funny-d-update-20260829.vercel.app/#organization',name:'Funny D'},keywords:Array.isArray(post.tags)?post.tags.map(String).join(', '):'',...(author?{author:{'@type':author==='Funny D'?'Organization':'Person',name:author}}:{})});document.head.append(ld);
     const faq=Array.isArray(post.faq)?post.faq.filter(item=>item&&item.q&&item.a):[];
     if(faq.length){const faqLd=document.createElement('script');faqLd.type='application/ld+json';faqLd.textContent=JSON.stringify({'@context':'https://schema.org','@type':'FAQPage',mainEntity:faq.map(item=>({'@type':'Question',name:String(item.q),acceptedAnswer:{'@type':'Answer',text:String(item.a)}}))});document.head.append(faqLd)}
   }
@@ -47,7 +48,7 @@
     const sorted=posts.slice().sort((a,b)=>String(b.date||'').localeCompare(String(a.date||'')));
     const index=sorted.findIndex(post=>String(post.id)===id||(post.url&&String(post.url).replace(/\.html$/,'')===id));
     if(index<0){const box=el('div','blog-notfound');box.append(el('h1',null,'글을 찾을 수 없습니다'),el('p',null,'주소가 잘못되었거나 삭제된 글일 수 있어요.'));const back=el('a','button button-primary',null);back.href='index.html';back.textContent='이야기 목록으로';box.append(back);main.append(box);return}
-    const post=sorted[index];setMeta(post);const article=el('article','blog-article');const head=el('header','post-head');const time=el('time',null,fmtDate(post.date));time.dateTime=String(post.date||'');head.append(time,el('h1',null,String(post.title||'(제목 없음)')));
+    const post=sorted[index];document.querySelector('meta[name="robots"]')?.remove();setMeta(post);const article=el('article','blog-article');const head=el('header','post-head');const time=el('time',null,fmtDate(post.date));time.dateTime=String(post.date||'');head.append(time,el('h1',null,String(post.title||'(제목 없음)')));
     if(post.author||(post.updated&&post.updated!==post.date)){const meta=el('div','post-meta');if(post.author)meta.append(el('span',null,String(post.author)));if(post.updated&&post.updated!==post.date)meta.append(el('span',null,`수정 ${fmtDate(post.updated)}`));head.append(meta)}
     if(Array.isArray(post.tags)&&post.tags.length){const tags=el('div','blog-tags');post.tags.forEach(tag=>tags.append(el('span','blog-tag',String(tag))));head.append(tags)}
     article.append(head,el('hr','post-rule'),renderBody(post.body));const faq=Array.isArray(post.faq)?post.faq.filter(item=>item&&item.q&&item.a):[];if(faq.length)article.append(renderFaq(faq));if(Array.isArray(post.sources)&&post.sources.length)article.append(renderSources(post.sources));

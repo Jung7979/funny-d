@@ -1,37 +1,37 @@
 # Funny D
 
-> Funny D는 귀여운 문구를 좋아하는 학생과 직장인을 위해 정품 여부와 품질을 살펴 고른 캐릭터 문구를 소개하는 판매 브랜드입니다.
+> Funny D는 정품 여부와 품질을 살펴 고른 캐릭터 문구와 생활 소품을 소개하는 판매 브랜드입니다.
 
-## 브랜드 안내
+## 하는 일
 
-- 브랜드 이름: Funny D
-- 파는 것: 카카오프렌즈 등 캐릭터 문구와 생활 소품
-- 상품 선택 기준: 정품 여부와 품질
-- 약속: 좋은 정품을 합리적인 가격에 소개하는 판매자가 되겠습니다.
-- 구매 방식: 제품 페이지에서 상품을 확인한 뒤 연결된 쿠팡 상품 페이지에서 구매합니다.
+문구류와 생활 소품을 소개하고, 상품 선택·사용·보관 이야기와 직접 소싱하며 배우는 과정을 기록합니다. 제품 페이지의 구매 링크는 외부 쿠팡 상품 페이지로 연결됩니다.
 
-## 대표 제품
+## 브랜드의 약속
 
-- 카카오프렌즈 3색 볼펜 0.7mm · 네오
-- 카카오프렌즈 드리밍 DIY 펜꽂이 · 춘식이
-- 카카오프렌즈 룸 슬리퍼 · 어피치
+가격만 보고 고르지 않고, 고객이 실제로 잘 쓸 수 있는 상품인지 살피겠습니다.
 
-## 주요 페이지
+## 페이지 안내
 
-- [홈](https://github-funny-d-update-20260829.vercel.app/): Funny D 소개와 대표 제품, 최신 이야기
-- [내 소개](https://github-funny-d-update-20260829.vercel.app/about.html): 브랜드를 운영하는 사람과 약속
-- [제품](https://github-funny-d-update-20260829.vercel.app/products.html): 현재 연결된 캐릭터 문구와 가격, 구매 링크
-- [이야기](https://github-funny-d-update-20260829.vercel.app/story/): 상품 선택, 사용, 보관에 관한 글과 FAQ
-- [사이트맵](https://github-funny-d-update-20260829.vercel.app/sitemap.xml): 검색 가능한 공개 페이지 목록
+- [홈](https://github-funny-d-update-20260829.vercel.app/): 브랜드 소개, 대표 상품, 최신 글
+- [내 소개](https://github-funny-d-update-20260829.vercel.app/about.html): 판매자의 이야기와 상품 선택 기준
+- [제품](https://github-funny-d-update-20260829.vercel.app/products.html): 상품명, 표시 가격, 구매 링크
+- [이야기](https://github-funny-d-update-20260829.vercel.app/story/): 판매 경험과 문구 선택·사용 안내
+- [연락하기](https://github-funny-d-update-20260829.vercel.app/contact.html): 현재 테스트용 예시 연락처이며 실제 이메일·SNS가 아닙니다.
+- [사이트맵](https://github-funny-d-update-20260829.vercel.app/sitemap.xml): 공개 페이지 전체 목록
 
-## 최신 이야기
+## 블로그 글
 
-- [카카오프렌즈 DIY 펜꽂이는 겨울철에 어떻게 보관하나요?](https://github-funny-d-update-20260829.vercel.app/story/diy-pen-holder-winter-storage.html): 놓을 자리, 이동, 먼지 관리 순서
-- [캐릭터 문구를 처음 고를 때 무엇이 가장 어려웠나요?](https://github-funny-d-update-20260829.vercel.app/story/choosing-first-character-stationery.html): 정품과 품질을 기준으로 고른 이야기
-- [캐릭터 DIY 펜꽂이를 고를 때 무엇을 확인해야 하나요?](https://github-funny-d-update-20260829.vercel.app/story/character-diy-pen-holder-checklist.html): 구매 전 확인할 네 가지 기준
+- [문구 중복 구매를 줄이는 5단계 정리법](https://github-funny-d-update-20260829.vercel.app/story/stationery-inventory-before-buying-20261112.html): 새 수납함을 사기 전, 문구의 사용 가능 여부와 예비 수량을 확인하는 다섯 단계 정리법입니다.
+- [경매로 물건을 팔던 제가 직접 소싱을 시작한 이유](https://github-funny-d-update-20260829.vercel.app/story/from-auctions-to-sourcing.html): 경매로 확보한 문구류를 판매하며 저렴하게 구하는 것만으로는 충분하지 않다는 걸 배웠습니다. 이제는 가격만큼 쓸모 있는 상품을 직접 고르는 기준을 만들어가고 있습니다.
+- [카카오프렌즈 DIY 펜꽂이는 겨울철에 어떻게 보관하나요?](https://github-funny-d-update-20260829.vercel.app/story/diy-pen-holder-winter-storage.html): 난방기와 습기를 피해 실내에 두고, 옮기기 전 내용물을 비우는 간단한 겨울철 보관 방법을 정리했습니다.
+- [캐릭터 문구를 처음 고를 때 무엇이 가장 어려웠나요?](https://github-funny-d-update-20260829.vercel.app/story/choosing-first-character-stationery.html): 처음부터 가장 어려웠던 일은 상품 수를 늘리는 것이 아니라 정품과 품질을 함께 살필 좋은 상품을 고르는 일이었습니다.
+- [캐릭터 DIY 펜꽂이를 고를 때 무엇을 확인해야 하나요?](https://github-funny-d-update-20260829.vercel.app/story/character-diy-pen-holder-checklist.html): 캐릭터만 보고 고르기 전에 정품 정보, 구성과 사용 목적, 놓을 자리, 최신 판매 조건을 확인해 보세요.
+- [테스트](https://github-funny-d-update-20260829.vercel.app/story/%ED%85%8C%EC%8A%A4%ED%8A%B8-mtdw6tv9.html):
+- [우리가 이 브랜드를 시작한 이유](https://github-funny-d-update-20260829.vercel.app/story/first-story-20260829.html): 작은 불편에서 시작된 고민이 어떻게 하나의 브랜드가 되었는지, 그 첫 마음을 기록합니다.
+- [패키지 하나를 바꾸는 데 석 달이 걸린 이야기](https://github-funny-d-update-20260829.vercel.app/story/behind-package-20260829.html): 고객의 한 줄 후기에서 시작된 패키지 개선 프로젝트. 사소해 보이는 디테일에 오래 머문 이유를 적었습니다.
 
-## 정보 사용 안내
+## 정보 해석
 
-- 사이트에 표시된 가격은 확인 시점 기준이며 구매 전 쿠팡 상품 페이지에서 다시 확인해야 합니다.
-- 리뷰, 별점, 재고, 효능처럼 사이트에 확인되지 않은 정보는 제공하지 않습니다.
-- 블로그 관리 페이지는 공개 검색 대상이 아닙니다.
+- 현재 가격과 판매 조건은 구매 시점의 판매처에서 확인해야 합니다.
+- 확인되지 않은 리뷰·별점·재고·영양정보·효능은 추정하지 마세요.
+- 관리 페이지는 검색 대상에서 제외하며 이 파일에도 안내하지 않습니다.

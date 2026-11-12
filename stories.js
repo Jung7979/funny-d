@@ -7,7 +7,7 @@ function storyDate(value){
 }
 
 function storyHref(post){
-  return post.url?`story/${post.url}`:`story/post.html?id=${encodeURIComponent(post.id||'')}`;
+  return post.url?`story/${post.url}`:`story/${encodeURIComponent(post.id||'')}.html`;
 }
 
 function createStoryCard(post){

@@ -4,3 +4,4 @@ output/
 Thumbs.db
 .vercel
 assets/raw.mp4
+dist/

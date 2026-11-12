@@ -1,5 +1,4 @@
 User-agent: *
 Allow: /
-Disallow: /story/admin.html
 
 Sitemap: https://github-funny-d-update-20260829.vercel.app/sitemap.xml

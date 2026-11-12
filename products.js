@@ -27,8 +27,7 @@ function setProductStructuredData(products,featuredOnly){
         '@type':'Offer',
         priceCurrency:'KRW',
         price:String(price),
-        url:purchaseUrl,
-        seller:{'@type':'Organization','@id':'https://github-funny-d-update-20260829.vercel.app/#organization',name:'Funny D'}
+        url:purchaseUrl
       };
     }
     return {'@type':'ListItem',position:index+1,item};
