@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>쇼핑</title>
+  <!-- ① 내 사이트 공통 CSS가 있으면 여기에 연결해요. 예) <link rel="stylesheet" href="../assets/style.css"> -->
+  <link rel="stylesheet" href="shop.css">
+</head>
+<body data-shop-page="list">
+  <!-- ② HEADER: 내 사이트 머리(로고·메뉴)를 여기에 그대로 붙여 넣어요. 메뉴에 "쇼핑"(shop/)과 장바구니 링크를 넣어 주세요.
+       장바구니 링크 예) <a href="cart.html" data-shop-cart>장바구니 <span class="sk-count" data-shop-cart-count>0</span></a> -->
+
+  <main class="sk-page">
+    <div class="sk-wrap">
+      <div class="sk-head"><div><h1>쇼핑</h1><p>지금 주문할 수 있는 상품이에요.</p></div><div class="sk-chips" data-shop-cats></div></div>
+      <div data-shop-list><div class="sk-empty">상품을 불러오는 중이에요…</div></div>
+    </div>
+  </main>
+
+  <!-- ③ FOOTER: 내 사이트 바닥글을 여기에 붙여 넣어요. 사업자 정보(상호·대표·사업자번호·통신판매업 신고번호·주소·연락처)를 꼭 적어요. -->
+
+  <script src="shop.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,442 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <title>상품 관리</title>
+  <link rel="stylesheet" href="shop.css">
+  <style>
+    body { margin: 0; background: var(--sk-page); color: var(--sk-ink); font-family: var(--sk-font); }
+    .ad { max-width: 1080px; margin: 0 auto; padding: 24px 16px 80px; }
+    .ad h1 { font-size: 24px; margin: 0 0 4px; letter-spacing: -.02em; }
+    .ad h2 { font-size: 18px; margin: 0 0 14px; }
+    .ad-top { display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; margin-bottom: 18px; }
+    .ad-tabs { display: flex; gap: 6px; margin: 18px 0; flex-wrap: wrap; }
+    .ad-row { display: grid; grid-template-columns: 56px 1fr auto; gap: 12px; align-items: center; padding: 10px 0; border-bottom: 1px solid var(--sk-line); }
+    .ad-row img { width: 56px; height: 56px; object-fit: cover; border-radius: 10px; background: #eee; }
+    .ad-row small { color: var(--sk-sub); display: block; margin-top: 2px; }
+    .ad-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 14px; }
+    .ad-grid3 { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0 14px; }
+    .ad-hint { font-size: 12px; color: var(--sk-sub); font-weight: 400; }
+    .ad-pics { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 8px; }
+    .ad-pic { position: relative; width: 92px; }
+    .ad-pic img { width: 92px; height: 92px; object-fit: cover; border-radius: 10px; border: 1px solid var(--sk-line); background: #fff; display: block; }
+    .ad-pic div { display: flex; gap: 4px; margin-top: 4px; }
+    .ad-pic button { flex: 1; min-height: 28px; border: 1px solid var(--sk-line); background: #fff; border-radius: 8px; cursor: pointer; font-size: 12px; }
+    .ad-preview { padding: 14px; border-radius: 12px; background: #fff; border: 1px solid var(--sk-line); margin-bottom: 14px; }
+    .ad-bar { position: sticky; bottom: 0; display: flex; gap: 8px; flex-wrap: wrap; padding: 12px 0; background: var(--sk-page); border-top: 1px solid var(--sk-line); }
+    .ad-msg { padding: 12px 14px; border-radius: 10px; margin-bottom: 14px; line-height: 1.6; font-size: 14px; }
+    .ad-msg.ok { background: #ecf7ef; color: #1f5a33; border: 1px solid #c4e5cd; }
+    .ad-msg.err { background: #fff1ee; color: #8a2a17; border: 1px solid #f3c9bd; }
+    .ad-msg.info { background: #fff; border: 1px solid var(--sk-line); color: var(--sk-sub); }
+    .ad-check { display: flex; gap: 8px; align-items: center; font-size: 14px; margin-bottom: 14px; }
+    .ad textarea { font-family: var(--sk-font); }
+    @media (max-width: 640px) { .ad-grid, .ad-grid3 { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body data-shop-page="admin">
+<div class="ad">
+  <div class="ad-top">
+    <div><h1>상품 관리</h1><div class="sk-muted" style="font-size:14px">상품을 저장하면 1~2분 뒤 사이트에 반영돼요. 이 주소는 나만 알고 있어요.</div></div>
+    <div style="display:flex;gap:6px;flex-wrap:wrap"><a class="sk-btn sk-btn--line sk-btn--sm" href="./" target="_blank" rel="noopener">쇼핑 화면 보기</a><button class="sk-btn sk-btn--line sk-btn--sm" type="button" id="btn-conn">연결 설정</button></div>
+  </div>
+  <div id="msg"></div>
+
+  <section class="sk-panel" id="conn" hidden>
+    <h2>GitHub 연결 <span class="ad-hint">· 3주차 블로그 관리와 같은 값을 넣어요. 이 브라우저에만 저장돼요.</span></h2>
+    <div class="ad-grid">
+      <div class="sk-field"><label for="c-repo">저장소 <span class="ad-hint">아이디/저장소이름</span></label><input id="c-repo" placeholder="my-id/my-homepage"></div>
+      <div class="sk-field"><label for="c-branch">브랜치</label><input id="c-branch" placeholder="main"></div>
+    </div>
+    <div class="sk-field"><label for="c-token">GitHub 토큰 <span class="ad-hint">· 이 저장소만 Contents 읽기/쓰기 권한(fine-grained). 공용 PC에서는 저장하지 마세요.</span></label><input id="c-token" type="password" autocomplete="off" placeholder="github_pat_..."></div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap"><button class="sk-btn" type="button" id="c-save">연결하고 불러오기</button><button class="sk-btn sk-btn--line" type="button" id="c-forget">이 브라우저에서 지우기</button></div>
+  </section>
+
+  <div class="ad-tabs" role="tablist">
+    <button class="sk-chip" type="button" data-tab="list" aria-pressed="true">상품 목록</button>
+    <button class="sk-chip" type="button" data-tab="settings" aria-pressed="false">상점 설정 · 결제</button>
+    <button class="sk-chip" type="button" id="btn-export">JSON 내려받기</button>
+  </div>
+
+  <section id="tab-list">
+    <div class="sk-panel">
+      <div class="ad-top" style="margin-bottom:6px">
+        <input id="q" type="search" placeholder="이름·제품번호로 찾기" style="flex:1;min-width:180px;min-height:44px;padding:0 12px;border:1px solid var(--sk-line);border-radius:10px;font:15px var(--sk-font)">
+        <button class="sk-btn" type="button" id="btn-new">+ 새 상품</button>
+      </div>
+      <div id="rows"><div class="sk-muted" style="padding:20px 0">불러오는 중…</div></div>
+    </div>
+  </section>
+
+  <section id="tab-edit" hidden>
+    <form class="sk-panel" id="f" novalidate>
+      <h2 id="f-title">상품 등록</h2>
+      <div class="ad-grid">
+        <div class="sk-field"><label for="name">상품 이름 *</label><input id="name" required maxlength="80"></div>
+        <div class="sk-field"><label for="sku">제품번호(SKU) <span class="ad-hint">· 내가 관리하는 번호. 예) CAT-K-2KG</span></label><input id="sku" maxlength="40"></div>
+        <div class="sk-field"><label for="id">상품 주소 이름 <span class="ad-hint">· 영문·숫자·- 만. 한 번 정하면 바꾸지 않기</span></label><input id="id" pattern="[a-z0-9-]+" maxlength="60" placeholder="비우면 제품번호로 만들어요"></div>
+        <div class="sk-field"><label for="category">분류</label><input id="category" list="cats" maxlength="30"><datalist id="cats"></datalist></div>
+      </div>
+      <div class="sk-field"><label for="summary">한 줄 소개 <span class="ad-hint">· 목록 카드와 검색 결과에 나와요</span></label><input id="summary" maxlength="120"></div>
+
+      <h2 style="margin-top:10px">가격 · 재고</h2>
+      <div class="ad-grid3">
+        <div class="sk-field"><label for="listPrice">정가 <span class="ad-hint">· 선택, 줄 그어 보여요</span></label><input id="listPrice" inputmode="numeric"></div>
+        <div class="sk-field"><label for="price">판매가 *</label><input id="price" inputmode="numeric" required></div>
+        <div class="sk-field"><label for="salePrice">할인가 <span class="ad-hint">· 선택</span></label><input id="salePrice" inputmode="numeric"></div>
+        <div class="sk-field"><label for="saleStart">할인 시작일</label><input id="saleStart" type="date"></div>
+        <div class="sk-field"><label for="saleEnd">할인 종료일 <span class="ad-hint">· 비우면 계속</span></label><input id="saleEnd" type="date"></div>
+        <div class="sk-field"><label for="status">판매 상태</label><select id="status"><option>판매중</option><option>품절</option><option>숨김</option></select></div>
+        <div class="sk-field"><label for="stock">재고 <span class="ad-hint">· 비우면 무제한</span></label><input id="stock" inputmode="numeric"></div>
+        <div class="sk-field"><label for="maxQty">1회 최대 수량</label><input id="maxQty" inputmode="numeric" placeholder="10"></div>
+        <div class="sk-field"><label for="badges">뱃지 <span class="ad-hint">· 쉼표로. 예) BEST, NEW</span></label><input id="badges" maxlength="60"></div>
+      </div>
+      <label class="ad-check"><input type="checkbox" id="featured"> 홈 화면 추천 상품으로 보여 주기</label>
+      <div class="ad-preview" id="preview"></div>
+
+      <h2>사진</h2>
+      <div class="sk-field"><span class="sk-label">대표 사진 <span class="ad-hint">· 첫 번째가 목록에 나와요. 정사각형 추천. 올리면 1600px로 줄여서 저장해요</span></span>
+        <div class="ad-pics" id="pics"></div><input type="file" id="pic-file" accept="image/*" multiple></div>
+      <div class="sk-field"><span class="sk-label">상세페이지 이미지 <span class="ad-hint">· 세로로 긴 상세 이미지가 있으면 순서대로</span></span>
+        <div class="ad-pics" id="dpics"></div><input type="file" id="dpic-file" accept="image/*" multiple></div>
+
+      <h2>옵션 · 정보</h2>
+      <div class="sk-field"><label for="options">옵션 <span class="ad-hint">· 한 줄에 하나. <b>색상=화이트,블랙+1000</b> (+금액은 추가 요금)</span></label><textarea id="options" rows="2" placeholder="색상=화이트,블랙+1000&#10;사이즈=S,M,L+2000"></textarea></div>
+      <div class="sk-field"><label for="specs">상품 정보표 <span class="ad-hint">· 한 줄에 하나. <b>용량=2kg</b></span></label><textarea id="specs" rows="3" placeholder="용량=2kg&#10;원산지=국내&#10;유통기한=제조일로부터 12개월"></textarea></div>
+      <div class="sk-field"><label for="notice">상품정보제공고시 <span class="ad-hint">· 한 줄에 하나. <b>제조사=○○식품</b>. 상세 아래 표로 나와요</span></label><textarea id="notice" rows="4" placeholder="제품명=어덜트 5kg&#10;제조국=대한민국&#10;소비자상담 연락처=010-0000-0000"></textarea></div>
+      <div class="sk-field"><label for="detail">상세 설명 (긴 상세페이지) <span class="ad-hint">· 빈 줄로 덩어리 나누기. <b># 큰 문구</b> · <b>## 소제목</b> · <b>## POINT 1 | 제목</b> · <b>&gt; 강조 박스</b> · <b>- 목록</b> · <b>1. 번호 카드</b> · <b>| 항목 | 내용 |</b> 표 · <b>![설명](사진주소)</b> 사진(여러 줄이면 이어 붙임) · <b>---</b> 여백 · <b>**굵게**</b></span></label>
+        <div style="margin:0 0 8px"><button class="sk-btn sk-btn--line" type="button" id="f-skel" style="height:36px;padding:0 14px;font-size:13px">한국형 상세 틀 넣기</button></div>
+        <textarea id="detail" rows="16"></textarea></div>
+
+      <div class="ad-bar">
+        <button class="sk-btn" type="submit" id="f-save">저장하기</button>
+        <button class="sk-btn sk-btn--line" type="button" id="f-cancel">목록으로</button>
+        <a class="sk-btn sk-btn--line" id="f-view" target="_blank" rel="noopener" hidden>상품 페이지 보기</a>
+        <button class="sk-btn sk-btn--line" type="button" id="f-del" style="margin-left:auto;color:#8a2a17;border-color:#e3b3a6" hidden>삭제</button>
+      </div>
+    </form>
+  </section>
+
+  <section id="tab-settings" hidden>
+    <form class="sk-panel" id="s" novalidate>
+      <h2>상점</h2>
+      <div class="ad-grid">
+        <div class="sk-field"><label for="s-name">상점 이름</label><input id="s-name" maxlength="40"></div>
+        <div class="sk-field"><label for="s-contact">문의 연락처</label><input id="s-contact" maxlength="80"></div>
+        <div class="sk-field"><label for="s-fee">기본 배송비</label><input id="s-fee" inputmode="numeric"></div>
+        <div class="sk-field"><label for="s-free">무료배송 기준 금액 <span class="ad-hint">· 0이면 없음</span></label><input id="s-free" inputmode="numeric"></div>
+      </div>
+      <div class="sk-field"><label for="s-note">배송 안내 한 줄</label><input id="s-note" maxlength="80"></div>
+      <div class="sk-field"><label for="s-return">교환·반품 안내 <span class="ad-hint">· 모든 상품 아래에 나와요. 비우면 기본 문구(7일 안 신청 · 단순변심 왕복배송비 고객 부담 …)가 나와요. 상세 설명과 같은 문법</span></label><textarea id="s-return" rows="6"></textarea></div>
+
+      <h2 style="margin-top:10px">계좌이체 (무통장입금)</h2>
+      <label class="ad-check"><input type="checkbox" id="b-on"> 계좌이체 받기</label>
+      <div class="ad-grid">
+        <div class="sk-field"><label for="b-bank">은행</label><input id="b-bank" maxlength="20"></div>
+        <div class="sk-field"><label for="b-acc">계좌번호</label><input id="b-acc" maxlength="40"></div>
+        <div class="sk-field"><label for="b-holder">예금주</label><input id="b-holder" maxlength="30"></div>
+        <div class="sk-field"><label for="b-due">입금 기한(시간)</label><input id="b-due" inputmode="numeric"></div>
+      </div>
+
+      <h2 style="margin-top:10px">카드 · 간편결제 (토스페이먼츠)</h2>
+      <label class="ad-check"><input type="checkbox" id="t-on"> 토스페이먼츠 결제창 쓰기</label>
+      <div class="sk-field"><label for="t-ck">클라이언트 키 <span class="ad-hint">· test_gck_ 로 시작하면 테스트(돈 안 나감). 시크릿 키는 여기에 쓰지 말고 Vercel 환경변수 TOSS_SECRET_KEY 에만</span></label><input id="t-ck" maxlength="80"></div>
+      <div class="ad-bar"><button class="sk-btn" type="submit">설정 저장하기</button></div>
+    </form>
+  </section>
+</div>
+
+<script>
+(function () {
+  'use strict';
+  var KEY = 'shopkit-admin:' + location.pathname.replace(/admin\.html$/, '');
+  var FILE = 'shop/products.json';
+  var data = null, sha = null, editing = null, pics = [], dpics = [];
+  var $ = function (id) { return document.getElementById(id); };
+  var esc = function (s) { return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); };
+  var num = function (v) { var n = Number(String(v == null ? '' : v).replace(/[^0-9.-]/g, '')); return isFinite(n) ? n : 0; };
+  var won = function (n) { return Math.round(n || 0).toLocaleString('ko-KR') + '원'; };
+  var today = function () { return new Intl.DateTimeFormat('en-CA', { timeZone: 'Asia/Seoul', year: 'numeric', month: '2-digit', day: '2-digit' }).format(new Date()); };
+  var ROOT = new URL('../', location.href).href;
+  var src = function (p) { return !p ? 'images/placeholder.svg' : /^(https?:|data:|\/\/)/.test(p) ? p : ROOT + p.replace(/^\.?\//, ''); };
+
+  function conf() { try { return JSON.parse(localStorage.getItem(KEY) || '{}'); } catch (e) { return {}; } }
+  function setConf(c) { try { localStorage.setItem(KEY, JSON.stringify(c)); } catch (e) {} }
+  function connected() { var c = conf(); return !!(c.repo && c.token); }
+  function msg(kind, html) { $('msg').innerHTML = html ? '<div class="ad-msg ' + kind + '">' + html + '</div>' : ''; if (html) scrollTo({ top: 0, behavior: 'smooth' }); }
+
+  /* ── GitHub ── */
+  function gh(path, opt) {
+    var c = conf();
+    opt = opt || {};
+    return fetch('https://api.github.com/repos/' + c.repo + path, {
+      method: opt.method || 'GET',
+      headers: { Authorization: 'Bearer ' + c.token, Accept: 'application/vnd.github+json', 'X-GitHub-Api-Version': '2022-11-28' },
+      body: opt.body ? JSON.stringify(opt.body) : undefined
+    }).then(function (r) {
+      return r.json().catch(function () { return {}; }).then(function (j) {
+        if (!r.ok) {
+          var why = r.status === 401 ? '토큰이 틀렸거나 만료됐어요.' : r.status === 403 ? '토큰에 이 저장소 Contents 쓰기 권한이 없어요.' : r.status === 404 ? '저장소나 파일을 찾지 못했어요. 저장소 이름·브랜치를 확인해 주세요.' : r.status === 409 ? '그 사이 다른 곳(비서 등)에서 상품이 바뀌었어요. 새로고침 후 다시 저장해 주세요.' : (j.message || '');
+          var e = new Error(why + ' (GitHub ' + r.status + ')'); e.status = r.status; throw e;
+        }
+        return j;
+      });
+    });
+  }
+  function b64(str) { var bytes = new TextEncoder().encode(str), s = ''; for (var i = 0; i < bytes.length; i += 0x8000) s += String.fromCharCode.apply(null, bytes.subarray(i, i + 0x8000)); return btoa(s); }
+  function unb64(b) { var s = atob(b.replace(/\n/g, '')), u = new Uint8Array(s.length); for (var i = 0; i < s.length; i++) u[i] = s.charCodeAt(i); return new TextDecoder().decode(u); }
+  function branchQ() { return '?ref=' + encodeURIComponent(conf().branch || 'main'); }
+
+  function load() {
+    if (connected()) {
+      return gh('/contents/' + FILE + branchQ() + '&t=' + Date.now()).then(function (j) { sha = j.sha; return JSON.parse(unb64(j.content)); });
+    }
+    return fetch(ROOT + FILE + '?t=' + Date.now(), { cache: 'no-store' }).then(function (r) { if (!r.ok) throw new Error('상품 파일을 읽지 못했어요 (' + r.status + ')'); return r.json(); });
+  }
+  function save(label) {
+    if (!connected()) { msg('err', '미리보기 모드예요. 위 <b>연결 설정</b>에서 저장소와 토큰을 넣어야 저장돼요. 지금 내용은 <b>JSON 내려받기</b>로 받아 둘 수 있어요.'); return Promise.reject(new Error('not connected')); }
+    var text = JSON.stringify(data, null, 2) + '\n';
+    return gh('/contents/' + FILE, { method: 'PUT', body: { message: 'shop: ' + label, content: b64(text), sha: sha, branch: conf().branch || 'main' } })
+      .then(function (j) { sha = j.content.sha; });
+  }
+  function uploadImage(file) {
+    if (!connected()) return Promise.reject(new Error('사진을 올리려면 먼저 연결 설정을 해 주세요.'));
+    return shrink(file).then(function (b) {
+      var name = 'shop/images/' + today().replace(/-/g, '') + '-' + Math.random().toString(36).slice(2, 8) + '.jpg';
+      return gh('/contents/' + name, { method: 'PUT', body: { message: 'shop: 사진 ' + file.name.slice(0, 40), content: b, branch: conf().branch || 'main' } }).then(function () { return name; });
+    });
+  }
+  function shrink(file) {
+    return new Promise(function (ok, no) {
+      var im = new Image(), url = URL.createObjectURL(file);
+      im.onload = function () {
+        var max = 1600, w = im.naturalWidth, h = im.naturalHeight, k = Math.min(1, max / Math.max(w, h));
+        var cv = document.createElement('canvas'); cv.width = Math.round(w * k); cv.height = Math.round(h * k);
+        var cx = cv.getContext('2d'); cx.fillStyle = '#fff'; cx.fillRect(0, 0, cv.width, cv.height); cx.drawImage(im, 0, 0, cv.width, cv.height);
+        URL.revokeObjectURL(url);
+        ok(cv.toDataURL('image/jpeg', 0.85).split(',')[1]);
+      };
+      im.onerror = function () { no(new Error(file.name + ' 사진을 읽지 못했어요.')); };
+      im.src = url;
+    });
+  }
+
+  /* ── 목록 ── */
+  function tab(t) {
+    ['list', 'edit', 'settings'].forEach(function (k) { $('tab-' + k).hidden = k !== t; });
+    document.querySelectorAll('[data-tab]').forEach(function (b) { b.setAttribute('aria-pressed', b.dataset.tab === (t === 'edit' ? 'list' : t) ? 'true' : 'false'); });
+  }
+  function saleOn(p) { var s = num(p.salePrice), d = today(); return s > 0 && s < num(p.price) && !(p.saleStart && d < p.saleStart) && !(p.saleEnd && d > p.saleEnd); }
+  function rows() {
+    var q = $('q').value.trim().toLowerCase();
+    var list = data.products.filter(function (p) { return !q || (p.name + ' ' + (p.sku || '') + ' ' + p.id).toLowerCase().indexOf(q) >= 0; });
+    $('rows').innerHTML = list.length ? list.map(function (p) {
+      var on = saleOn(p);
+      return '<div class="ad-row"><img src="' + esc(src((p.images || [])[0])) + '" alt=""><div><b>' + esc(p.name) + '</b>' +
+        '<small>' + esc(p.sku || '-') + ' · ' + (on ? '<s>' + won(num(p.price)) + '</s> ' + won(num(p.salePrice)) : won(num(p.price))) + ' · ' + esc(p.status || '판매중') +
+        (p.stock === null || p.stock === '' || p.stock === undefined ? '' : ' · 재고 ' + p.stock) + (p.featured ? ' · 추천' : '') + '</small></div>' +
+        '<button class="sk-btn sk-btn--line sk-btn--sm" type="button" data-edit="' + esc(p.id) + '">수정</button></div>';
+    }).join('') : '<div class="sk-muted" style="padding:20px 0">상품이 없어요. <b>+ 새 상품</b>으로 등록해 보세요.</div>';
+  }
+
+  /* ── 편집 ── */
+  var F = ['name', 'sku', 'id', 'category', 'summary', 'listPrice', 'price', 'salePrice', 'saleStart', 'saleEnd', 'status', 'stock', 'maxQty', 'badges', 'options', 'specs', 'notice', 'detail'];
+  function optText(o) { return (o || []).map(function (x) { return x.name + '=' + (x.values || []).map(function (v) { return v.label + (num(v.add) ? (num(v.add) > 0 ? '+' : '') + num(v.add) : ''); }).join(','); }).join('\n'); }
+  function parseOpts(t) {
+    return t.split('\n').map(function (l) { return l.trim(); }).filter(Boolean).map(function (l) {
+      var i = l.indexOf('='); if (i < 1) throw new Error('옵션 줄 "' + l + '" 에 = 가 없어요. 예) 색상=화이트,블랙+1000');
+      return { name: l.slice(0, i).trim(), values: l.slice(i + 1).split(',').map(function (v) { v = v.trim(); var m = v.match(/^(.*?)([+-]\d[\d,]*)$/); return m ? { label: m[1].trim(), add: num(m[2]) } : { label: v, add: 0 }; }).filter(function (v) { return v.label; }) };
+    });
+  }
+  function parseSpecs(t) { return t.split('\n').map(function (l) { return l.trim(); }).filter(Boolean).map(function (l) { var i = l.indexOf('='); return i < 0 ? { k: l, v: '' } : { k: l.slice(0, i).trim(), v: l.slice(i + 1).trim() }; }); }
+  function slug(s) { return String(s || '').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '').slice(0, 60); }
+
+  function edit(id) {
+    var p = id ? data.products.filter(function (x) { return x.id === id; })[0] : null;
+    editing = p ? p.id : null;
+    var v = p || { status: '판매중', maxQty: 10 };
+    F.forEach(function (k) {
+      var el = $(k), val = v[k];
+      if (k === 'badges') val = (v.badges || []).join(', ');
+      if (k === 'options') val = optText(v.options);
+      if (k === 'specs' || k === 'notice') val = (v[k] || []).map(function (s) { return s.k + '=' + s.v; }).join('\n');
+      if ((k === 'listPrice' || k === 'salePrice') && !num(val)) val = '';
+      el.value = val == null ? '' : val;
+    });
+    $('id').readOnly = !!p;
+    $('featured').checked = !!v.featured;
+    pics = (v.images || []).slice(); dpics = (v.detailImages || []).slice();
+    $('f-title').textContent = p ? '상품 수정 — ' + p.name : '새 상품 등록';
+    $('f-del').hidden = !p; $('f-view').hidden = !p;
+    if (p) $('f-view').href = 'product.html?id=' + encodeURIComponent(p.id);
+    $('cats').innerHTML = (data.categories || []).concat(data.products.map(function (x) { return x.category; })).filter(function (c, i, a) { return c && a.indexOf(c) === i; }).map(function (c) { return '<option value="' + esc(c) + '">'; }).join('');
+    paintPics(); preview(); tab('edit'); msg(); scrollTo(0, 0);
+  }
+  function paintPics() {
+    [['pics', pics], ['dpics', dpics]].forEach(function (x) {
+      $(x[0]).innerHTML = x[1].map(function (s, i) {
+        return '<div class="ad-pic"><img src="' + esc(src(s)) + '" alt=""><div>' + (i ? '<button type="button" data-up="' + x[0] + ':' + i + '" aria-label="앞으로">◀</button>' : '') + '<button type="button" data-rm="' + x[0] + ':' + i + '" aria-label="빼기">빼기</button></div></div>';
+      }).join('') || '<span class="ad-hint">아직 사진이 없어요</span>';
+    });
+  }
+  function collect() {
+    var g = function (k) { return $(k).value.trim(); };
+    var p = {
+      id: editing || g('id') || slug(g('sku')) || slug(g('name')) || ('item-' + Date.now().toString(36)),
+      sku: g('sku'), name: g('name'), category: g('category'), summary: g('summary'),
+      listPrice: num(g('listPrice')), price: num(g('price')), salePrice: num(g('salePrice')), saleStart: g('saleStart'), saleEnd: g('saleEnd'),
+      stock: g('stock') === '' ? null : num(g('stock')), status: g('status') || '판매중', featured: $('featured').checked,
+      badges: g('badges').split(',').map(function (s) { return s.trim(); }).filter(Boolean),
+      images: pics.slice(), options: parseOpts($('options').value), specs: parseSpecs($('specs').value), notice: parseSpecs($('notice').value),
+      detail: $('detail').value.replace(/\s+$/, ''), detailImages: dpics.slice(), maxQty: num(g('maxQty')) || 10
+    };
+    return p;
+  }
+  function check(p) {
+    if (!p.name) return '상품 이름을 적어 주세요.';
+    if (!(p.price > 0)) return '판매가를 숫자로 적어 주세요.';
+    if (!/^[a-z0-9-]+$/.test(p.id)) return '상품 주소 이름은 영문 소문자·숫자·- 만 쓸 수 있어요.';
+    if (p.salePrice && p.salePrice >= p.price) return '할인가는 판매가보다 낮아야 해요.';
+    if (p.saleStart && p.saleEnd && p.saleStart > p.saleEnd) return '할인 종료일이 시작일보다 빨라요.';
+    var dup = data.products.filter(function (x) { return x.id !== editing; });
+    if (!editing && dup.some(function (x) { return x.id === p.id; })) return '같은 상품 주소 이름(' + p.id + ')이 이미 있어요.';
+    if (p.sku && dup.some(function (x) { return x.sku && x.sku === p.sku; })) return '같은 제품번호(' + p.sku + ')가 이미 있어요.';
+    return '';
+  }
+  function preview() {
+    var p; try { p = collect(); } catch (e) { $('preview').innerHTML = '<span class="sk-line__warn">' + esc(e.message) + '</span>'; return; }
+    var on = saleOn(p), now = on ? p.salePrice : p.price, was = Math.max(p.listPrice, p.price);
+    var r = was > now ? Math.floor((1 - now / was) * 100) : 0;
+    $('preview').innerHTML = '<div class="ad-hint" style="margin-bottom:6px">손님에게 이렇게 보여요 (오늘 기준)</div><div class="sk-price sk-price--big">' + (r ? '<span class="sk-price__rate">' + r + '%</span>' : '') +
+      '<span class="sk-price__now">' + won(now) + '</span>' + (was > now ? '<span class="sk-price__was">' + won(was) + '</span>' : '') + '</div>' +
+      (p.salePrice && !on ? '<div class="ad-hint">할인가는 할인 기간이 아니라서 지금은 적용되지 않아요.</div>' : '') +
+      (p.options.length ? '<div class="ad-hint">옵션: ' + esc(p.options.map(function (o) { return o.name + '(' + o.values.map(function (v) { return v.label + (v.add ? ' ' + (v.add > 0 ? '+' : '') + won(v.add) : ''); }).join(', ') + ')'; }).join(' / ')) + '</div>' : '');
+  }
+
+  // 한국형 긴 상세 틀: 순서만 잡아 줘요. 사실(원료·수치·후기)은 내 상품 정보로 바꿔 채워요.
+  var SKELETON = [
+    '# 손님이 가장 먼저 들어야 할 한 문장',
+    '상품명이 어떤 분의 어떤 고민을 덜어 주는지 두 줄로 적어요.',
+    '![대표 연출 사진](사진주소)',
+    '## 이런 분께 권해요',
+    '- 고민 하나\n- 고민 둘\n- 고민 셋',
+    '> 우리가 이 상품을 만든(고른) 이유를 한두 문장으로.',
+    '---',
+    '## POINT 1 | 첫 번째 강점',
+    '강점을 뒷받침하는 사실(원료·공정·수치)을 적어요.',
+    '![강점 1 사진](사진주소)',
+    '## POINT 2 | 두 번째 강점',
+    '사실 위주로, 과장 없이.',
+    '## POINT 3 | 세 번째 강점',
+    '사실 위주로, 과장 없이.',
+    '---',
+    '## 구성 · 성분',
+    '| 항목 | 내용 |\n| 용량 | 00g |\n| 원료 | 00, 00 |',
+    '## 이렇게 쓰세요',
+    '1. 첫 번째 단계\n2. 두 번째 단계\n3. 세 번째 단계',
+    '## 자주 묻는 질문',
+    '**Q. 질문 하나?**\n답을 적어요.',
+    '**Q. 질문 둘?**\n답을 적어요.',
+    '## 보관 · 주의',
+    '- 보관 방법\n- 주의할 점'
+  ].join('\n\n');
+  $('f-skel').onclick = function () {
+    var d = $('detail');
+    if (d.value.trim() && !confirm('지금 적힌 상세 설명 뒤에 틀을 이어 붙일까요?')) return;
+    d.value = (d.value.trim() ? d.value.replace(/\s+$/, '') + '\n\n---\n\n' : '') + SKELETON.replace(/상품명/g, $('name').value.trim() || '상품명');
+    d.focus();
+  };
+
+  /* ── 설정 ── */
+  function fillSettings() {
+    var st = data.store || {}, b = (data.payment || {}).bank || {}, t = (data.payment || {}).toss || {};
+    $('s-name').value = st.name || ''; $('s-contact').value = st.contact || ''; $('s-fee').value = st.shippingFee || 0; $('s-free').value = st.freeShippingOver || 0; $('s-note').value = st.shippingNote || ''; $('s-return').value = st.returnPolicy || '';
+    $('b-on').checked = b.enabled !== false; $('b-bank').value = b.bankName || ''; $('b-acc').value = b.account || ''; $('b-holder').value = b.holder || ''; $('b-due').value = b.dueHours || 48;
+    $('t-on').checked = !!t.enabled; $('t-ck').value = t.clientKey || '';
+  }
+
+  /* ── 이벤트 ── */
+  document.addEventListener('click', function (e) {
+    var t = e.target.closest('button'); if (!t) return;
+    if (t.dataset.tab) { tab(t.dataset.tab); if (t.dataset.tab === 'settings') fillSettings(); }
+    if (t.dataset.edit) edit(t.dataset.edit);
+    if (t.dataset.rm || t.dataset.up) {
+      var x = (t.dataset.rm || t.dataset.up).split(':'), arr = x[0] === 'pics' ? pics : dpics, i = +x[1];
+      if (t.dataset.rm) arr.splice(i, 1); else arr.splice(i - 1, 0, arr.splice(i, 1)[0]);
+      paintPics();
+    }
+  });
+  $('btn-new').onclick = function () { edit(null); };
+  $('f-cancel').onclick = function () { tab('list'); msg(); };
+  $('q').oninput = rows;
+  $('f').addEventListener('input', preview);
+  $('btn-conn').onclick = function () { var c = conf(); $('conn').hidden = !$('conn').hidden; $('c-repo').value = c.repo || ''; $('c-branch').value = c.branch || 'main'; $('c-token').value = c.token || ''; };
+  $('c-save').onclick = function () {
+    var repo = $('c-repo').value.trim().replace(/^https?:\/\/github\.com\//, '').replace(/\.git$/, '').replace(/\/$/, '');
+    if (!/^[\w.-]+\/[\w.-]+$/.test(repo)) return msg('err', '저장소는 <b>아이디/저장소이름</b> 모양으로 적어 주세요.');
+    setConf({ repo: repo, branch: $('c-branch').value.trim() || 'main', token: $('c-token').value.trim() });
+    $('conn').hidden = true; start();
+  };
+  $('c-forget').onclick = function () { try { localStorage.removeItem(KEY); } catch (e) {} $('c-token').value = ''; msg('info', '이 브라우저에서 연결 정보를 지웠어요.'); };
+  $('btn-export').onclick = function () {
+    var a = document.createElement('a'); a.href = URL.createObjectURL(new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' })); a.download = 'products.json'; a.click();
+  };
+  function addFiles(input, arr) {
+    var files = Array.prototype.slice.call(input.files || []); input.value = '';
+    if (!files.length) return;
+    msg('info', '사진 ' + files.length + '장을 올리는 중이에요…');
+    files.reduce(function (p, f) { return p.then(function () { return uploadImage(f).then(function (n) { arr.push(n); paintPics(); }); }); }, Promise.resolve())
+      .then(function () { msg('ok', '사진을 올렸어요. <b>저장하기</b>를 눌러야 상품에 붙어요. (사이트에 보이기까지 1~2분)'); })
+      .catch(function (err) { msg('err', esc(err.message)); });
+  }
+  $('pic-file').onchange = function () { addFiles(this, pics); };
+  $('dpic-file').onchange = function () { addFiles(this, dpics); };
+
+  $('f').onsubmit = function (e) {
+    e.preventDefault();
+    var p; try { p = collect(); } catch (err) { return msg('err', esc(err.message)); }
+    var bad = check(p); if (bad) return msg('err', esc(bad));
+    var old = editing ? data.products.filter(function (x) { return x.id === editing; })[0] : null;
+    p.createdAt = (old && old.createdAt) || today();
+    var before = JSON.stringify(data);
+    if (old) data.products[data.products.indexOf(old)] = p; else data.products.unshift(p);
+    $('f-save').disabled = true;
+    save((old ? '상품 수정 ' : '상품 등록 ') + p.name).then(function () {
+      editing = p.id; rows(); edit(p.id); msg('ok', '<b>' + esc(p.name) + '</b> 저장했어요. 1~2분 뒤 <a href="product.html?id=' + encodeURIComponent(p.id) + '" target="_blank" rel="noopener">상품 페이지</a>에 반영돼요.');
+    }).catch(function (err) { data = JSON.parse(before); if (err.message !== 'not connected') msg('err', esc(err.message)); })
+      .then(function () { $('f-save').disabled = false; });
+  };
+  $('f-del').onclick = function () {
+    var p = data.products.filter(function (x) { return x.id === editing; })[0]; if (!p) return;
+    if (!confirm('"' + p.name + '" 상품을 지울까요?\n잠깐 안 팔 거면 판매 상태를 "숨김"으로 바꾸는 게 좋아요.')) return;
+    var before = JSON.stringify(data);
+    data.products.splice(data.products.indexOf(p), 1);
+    save('상품 삭제 ' + p.name).then(function () { rows(); tab('list'); msg('ok', '지웠어요.'); }).catch(function (err) { data = JSON.parse(before); if (err.message !== 'not connected') msg('err', esc(err.message)); });
+  };
+  $('s').onsubmit = function (e) {
+    e.preventDefault();
+    var ck = $('t-ck').value.trim();
+    if (/^(test|live)_gsk_|^(test|live)_sk_/.test(ck)) return msg('err', '그건 <b>시크릿 키</b>예요! 여기에 넣으면 누구나 볼 수 있어요. 클라이언트 키(…_gck_ 또는 …_ck_)를 넣고, 시크릿 키는 Vercel 환경변수 TOSS_SECRET_KEY 에만 넣어 주세요.');
+    var before = JSON.stringify(data);
+    data.store = Object.assign({}, data.store, { name: $('s-name').value.trim(), contact: $('s-contact').value.trim(), shippingFee: num($('s-fee').value), freeShippingOver: num($('s-free').value), shippingNote: $('s-note').value.trim(), returnPolicy: $('s-return').value.replace(/\s+$/, '') });
+    data.payment = data.payment || {};
+    data.payment.bank = { enabled: $('b-on').checked, bankName: $('b-bank').value.trim(), account: $('b-acc').value.trim(), holder: $('b-holder').value.trim(), dueHours: num($('b-due').value) || 48 };
+    data.payment.toss = { enabled: $('t-on').checked, clientKey: ck };
+    if (!data.payment.bank.enabled && !data.payment.toss.enabled) { data = JSON.parse(before); return msg('err', '결제 방법을 하나 이상 켜 주세요.'); }
+    save('상점 설정').then(function () { msg('ok', '설정을 저장했어요. 1~2분 뒤 주문서에 반영돼요.'); }).catch(function (err) { data = JSON.parse(before); if (err.message !== 'not connected') msg('err', esc(err.message)); });
+  };
+
+  function start() {
+    $('rows').innerHTML = '<div class="sk-muted" style="padding:20px 0">불러오는 중…</div>';
+    load().then(function (d) {
+      d.products = Array.isArray(d.products) ? d.products : []; data = d; rows(); tab('list');
+      if (!connected()) msg('info', '<b>미리보기 모드</b> — 화면은 다 써 볼 수 있지만 저장은 안 돼요. 오른쪽 위 <b>연결 설정</b>에 저장소와 GitHub 토큰을 넣으면 저장돼요.');
+      else msg('ok', conf().repo + ' 에 연결됐어요. 상품 ' + d.products.length + '개');
+    }).catch(function (e) { msg('err', esc(e.message)); if (e.status === 401 || e.status === 404) $('btn-conn').click(); });
+  }
+  start();
+})();
+</script>
+</body>
+</html>
