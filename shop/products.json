@@ -26,6 +26,47 @@
   ],
   "products": [
     {
+      "id": "comet-kitchen-towel-4roll",
+      "sku": "",
+      "name": "코멧 천연펄프 키친타올 2겹 200매, 4롤, 1개",
+      "category": "주방용품",
+      "summary": "2겹 · 롤당 200매 · 4롤 1개 구성 · 무료배송",
+      "listPrice": 0,
+      "price": 3990,
+      "salePrice": 0,
+      "saleStart": "",
+      "saleEnd": "",
+      "stock": null,
+      "status": "판매중",
+      "featured": false,
+      "badges": [],
+      "images": [
+        "shop/images/20261118-8v4ltu.png"
+      ],
+      "options": [],
+      "specs": [
+        {
+          "k": "겹수",
+          "v": "2겹"
+        },
+        {
+          "k": "롤당 매수",
+          "v": "200매"
+        },
+        {
+          "k": "구성",
+          "v": "4롤, 1개"
+        }
+      ],
+      "notice": [],
+      "detail": "# 코멧 천연펄프 키친타올\n\n## 상품 구성\n- 2겹\n- 롤당 200매\n- 4롤, 1개\n\n## 판매가·배송\n- 판매가: 3,990원\n- 배송비: 무료\n\n## 참고 이미지 안내\n첨부 이미지는 상품 확인용으로 제공된 화면 캡처입니다. 함께 표시된 다른 상품은 판매 구성에 포함되지 않습니다. 캡처 속 타 판매처의 배송 약속·적립·후기·할인율은 이 쇼핑몰의 판매 조건이 아닙니다.",
+      "detailImages": [
+        "shop/images/20261118-zgfwlw.png"
+      ],
+      "maxQty": 10,
+      "createdAt": "2026-11-18"
+    },
+    {
       "id": "sample-best",
       "sku": "P-0001",
       "name": "샘플 대표 상품",
