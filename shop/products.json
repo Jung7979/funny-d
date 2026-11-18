@@ -26,6 +26,46 @@
   ],
   "products": [
     {
+      "id": "camping-chair-coursework",
+      "sku": "",
+      "name": "접이식 캠핑 의자 · 과제용 콘셉트",
+      "category": "",
+      "summary": "과제용 AI 콘셉트 · 주문불가 · 실제 사양 확인 전",
+      "listPrice": 0,
+      "price": 20000,
+      "salePrice": 0,
+      "saleStart": "",
+      "saleEnd": "",
+      "stock": null,
+      "status": "품절",
+      "featured": false,
+      "badges": [
+        "입고예정"
+      ],
+      "images": [
+        "https://github-funny-d-update-20260829.vercel.app/shop/images/camping-chair-coursework-20261118/card-01.jpg?v=94c4750d9b35",
+        "https://github-funny-d-update-20260829.vercel.app/shop/images/camping-chair-coursework-20261118/card-02.jpg?v=94c4750d9b35",
+        "https://github-funny-d-update-20260829.vercel.app/shop/images/camping-chair-coursework-20261118/card-03.jpg?v=94c4750d9b35",
+        "https://github-funny-d-update-20260829.vercel.app/shop/images/camping-chair-coursework-20261118/card-04.jpg?v=94c4750d9b35",
+        "https://github-funny-d-update-20260829.vercel.app/shop/images/camping-chair-coursework-20261118/card-05.jpg?v=94c4750d9b35",
+        "https://github-funny-d-update-20260829.vercel.app/shop/images/camping-chair-coursework-20261118/card-06.jpg?v=94c4750d9b35"
+      ],
+      "options": [],
+      "specs": [],
+      "notice": [],
+      "detail": "# 아이 경기, 기다리는 내 자리\n\n접이식 캠핑 의자를 소개하는 수업 과제용 콘셉트입니다.\n\n## 예정 판매가 20,000원\n입고예정이며 현재 주문은 받지 않습니다.\n\n## 이미지 안내\n이미지는 AI로 만든 콘셉트이며 실제 상품과 다를 수 있습니다. 실측 사양·구성·소재·입고 일정은 확인 후 안내합니다.\n\n## 상품 준비 상태\n실재고와 공급 일정은 확인되지 않았습니다. 본 페이지는 실판매 주문을 받기 위한 페이지가 아닙니다.",
+      "detailImages": [
+        "https://github-funny-d-update-20260829.vercel.app/shop/images/camping-chair-coursework-20261118/card-01.jpg?v=94c4750d9b35",
+        "https://github-funny-d-update-20260829.vercel.app/shop/images/camping-chair-coursework-20261118/card-02.jpg?v=94c4750d9b35",
+        "https://github-funny-d-update-20260829.vercel.app/shop/images/camping-chair-coursework-20261118/card-03.jpg?v=94c4750d9b35",
+        "https://github-funny-d-update-20260829.vercel.app/shop/images/camping-chair-coursework-20261118/card-04.jpg?v=94c4750d9b35",
+        "https://github-funny-d-update-20260829.vercel.app/shop/images/camping-chair-coursework-20261118/card-05.jpg?v=94c4750d9b35",
+        "https://github-funny-d-update-20260829.vercel.app/shop/images/camping-chair-coursework-20261118/card-06.jpg?v=94c4750d9b35"
+      ],
+      "maxQty": 10,
+      "createdAt": "2026-11-18"
+    },
+    {
       "id": "kakao-chunsik-diy-pen-holder",
       "sku": "",
       "name": "카카오프렌즈 드리밍 DIY 펜꽂이 · 춘식이",
