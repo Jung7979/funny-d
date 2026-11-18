@@ -115,7 +115,7 @@
       "saleStart": "",
       "saleEnd": "",
       "stock": null,
-      "status": "판매중",
+      "status": "숨김",
       "featured": false,
       "badges": [],
       "images": [
