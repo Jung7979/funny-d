@@ -34,14 +34,14 @@
   <link rel="stylesheet" href="styles.css">
   <link rel="stylesheet" href="catalog.css">
   <link rel="stylesheet" href="assets/scrub.css">
-  <link rel="stylesheet" href="assets/cart.css">
+  <link rel="stylesheet" href="shop/shop.css">
 </head>
 <body class="home-page">
   <a class="skip-link" href="#main">본문 바로가기</a>
   <header class="site-header">
     <a class="logo" href="#home" aria-label="Funny D 홈"><img src="funny-d-logo.png" alt="Funny D"></a>
     <button class="menu-toggle" type="button" aria-label="메뉴 열기" aria-controls="nav" aria-expanded="false"><span></span><span></span></button>
-    <nav id="nav" class="nav" aria-label="주요 메뉴"><a href="about.html">내 소개</a><a href="products.html">제품</a><a href="story/">이야기</a><a class="nav-pill" href="contact.html">연락하기</a></nav>
+    <nav id="nav" class="nav" aria-label="주요 메뉴"><a href="about.html">내 소개</a><a href="products.html">제품</a><a href="story/">이야기</a><a class="nav-pill" href="contact.html">연락하기</a><a href="shop/">쇼핑</a><a href="shop/cart.html" data-shop-cart>장바구니 <span data-shop-cart-count>0</span></a></nav>
   </header>
 
   <main id="main">
@@ -101,6 +101,6 @@
   <script src="products.js"></script>
   <script src="stories.js"></script>
   <script src="assets/scrub.js" defer></script>
-  <script src="assets/cart.js" defer></script>
+  <script src="shop/shop.js" defer></script>
 </body>
 </html>

@@ -5,13 +5,13 @@
    ============================================================ */
 :root {
   --sk-bg: #ffffff;        /* 카드·패널 바탕 */
-  --sk-page: #faf8f5;      /* 쇼핑 페이지 바탕 */
-  --sk-ink: #22201d;       /* 글자색 · 기본 버튼 바탕 */
-  --sk-sub: #6f6a63;       /* 보조 글자 */
-  --sk-line: #e7e3dd;      /* 구분선 */
-  --sk-accent: #c8452d;    /* 할인율 · 뱃지 · 강조 */
+  --sk-page: #fffafd;      /* 쇼핑 페이지 바탕 */
+  --sk-ink: #3f3940;       /* 글자색 · 기본 버튼 바탕 */
+  --sk-sub: #7c727a;       /* 보조 글자 */
+  --sk-line: #eadfe5;      /* 구분선 */
+  --sk-accent: #a94763;    /* 할인율 · 뱃지 · 강조 */
   --sk-ok: #2f7a4a;        /* 완료 · 무료배송 */
-  --sk-radius: 14px;       /* 모서리 둥글기 */
+  --sk-radius: 24px;       /* 모서리 둥글기 */
   --sk-font: "Pretendard", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
   --sk-maxw: 1120px;       /* 본문 최대 폭 */
 }

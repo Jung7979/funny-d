@@ -18,7 +18,7 @@ const faqOf=p=>Array.isArray(p.faq)?p.faq.filter(f=>f&&f.q&&f.a):[];
 const organization={'@context':'https://schema.org','@type':'Organization','@id':`${origin}/#organization`,name:'Funny D',url:`${origin}/`,logo:`${origin}/funny-d-logo.png`,description:'정품 여부와 품질을 살펴 고른 캐릭터 문구와 생활 소품을 소개하는 판매 브랜드'};
 await rm(out,{recursive:true,force:true});await mkdir(out,{recursive:true});
 for(const entry of await readdir(root,{withFileTypes:true})){
- if(entry.isDirectory()?!['assets','product-images','story'].includes(entry.name):(!/\.(html|css|js|json|png|xml|txt)$/.test(entry.name)||entry.name==='vercel.json'))continue;
+ if(entry.isDirectory()?!['assets','product-images','story','shop'].includes(entry.name):(!/\.(html|css|js|json|png|xml|txt)$/.test(entry.name)||entry.name==='vercel.json'))continue;
  await cp(path.join(root,entry.name),path.join(out,entry.name),{recursive:true});
 }
 const template=await readFile('story/post.html','utf8');
