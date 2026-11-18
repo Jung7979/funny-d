@@ -26,6 +26,32 @@
   ],
   "products": [
     {
+      "id": "kakao-chunsik-diy-pen-holder",
+      "sku": "",
+      "name": "카카오프렌즈 드리밍 DIY 펜꽂이 · 춘식이",
+      "category": "",
+      "summary": "카카오프렌즈 드리밍 DIY 펜꽂이 · 춘식이 · 무료배송",
+      "listPrice": 0,
+      "price": 5760,
+      "salePrice": 0,
+      "saleStart": "",
+      "saleEnd": "",
+      "stock": null,
+      "status": "판매중",
+      "featured": false,
+      "badges": [],
+      "images": [
+        "https://github-funny-d-update-20260829.vercel.app/product-images/chunsik-diy-pen-holder.jpg"
+      ],
+      "options": [],
+      "specs": [],
+      "notice": [],
+      "detail": "# 카카오프렌즈 드리밍 DIY 펜꽂이 · 춘식이\n\n## 상품 안내\n기존 Funny D 상품 목록에 등록된 제품입니다.\n\n## 판매가·배송\n- 판매가: 5,760원\n- 배송비: 무료",
+      "detailImages": [],
+      "maxQty": 10,
+      "createdAt": "2026-11-18"
+    },
+    {
       "id": "kakao-apeach-room-slippers",
       "sku": "",
       "name": "카카오프렌즈 룸 슬리퍼 · 어피치",
