@@ -26,6 +26,32 @@
   ],
   "products": [
     {
+      "id": "kakao-chunsik-kids-winter-gloves",
+      "sku": "",
+      "name": "카카오프렌즈 춘식이 아동 방한 장갑",
+      "category": "",
+      "summary": "카카오프렌즈 춘식이 아동 방한 장갑 · 무료배송",
+      "listPrice": 0,
+      "price": 9900,
+      "salePrice": 0,
+      "saleStart": "",
+      "saleEnd": "",
+      "stock": null,
+      "status": "판매중",
+      "featured": false,
+      "badges": [],
+      "images": [
+        "https://github-funny-d-update-20260829.vercel.app/product-images/kakao-kids-winter-gloves.png"
+      ],
+      "options": [],
+      "specs": [],
+      "notice": [],
+      "detail": "# 카카오프렌즈 춘식이 아동 방한 장갑\n\n## 상품 안내\n기존 Funny D 상품 목록에 등록된 제품입니다.\n\n## 판매가·배송\n- 판매가: 9,900원\n- 배송비: 무료",
+      "detailImages": [],
+      "maxQty": 10,
+      "createdAt": "2026-11-18"
+    },
+    {
       "id": "comet-kitchen-towel-4roll",
       "sku": "",
       "name": "코멧 천연펄프 키친타올 2겹 200매, 4롤, 1개",
