@@ -1,18 +1,5 @@
 [
   {
-    "id": "acea331a-b982-49b3-9d81-9eae76bb7f13",
-    "title": "V2 블로그 발행 테스트",
-    "date": "2026-11-26",
-    "summary": "홈페이지에서 글이 정상적으로 열리는지 확인하기 위해 잠시 올린 글입니다.",
-    "tags": [
-      "테스트"
-    ],
-    "body": "홈페이지에서 글이 정상적으로 열리는지 확인하기 위해 잠시 올린 글입니다.",
-    "url": "v2-blog-publish-check-acea331a.html",
-    "description": "홈페이지에서 글이 정상적으로 열리는지 확인하기 위해 잠시 올린 글입니다.",
-    "author": "홍길동"
-  },
-  {
     "id": "stationery-inventory-before-buying-20261112",
     "title": "문구 중복 구매를 줄이는 5단계 정리법",
     "date": "2026-11-12",

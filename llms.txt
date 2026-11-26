@@ -39,7 +39,6 @@
 ## 이야기(블로그)
 
 <!-- posts:start -->
-- [V2 블로그 발행 테스트](https://github-funny-d-update-20260829.vercel.app/story/v2-blog-publish-check-acea331a.html): 홈페이지에서 글이 정상적으로 열리는지 확인하기 위해 잠시 올린 글입니다.
 - [문구 중복 구매를 줄이는 5단계 정리법](https://github-funny-d-update-20260829.vercel.app/story/post.html?id=stationery-inventory-before-buying-20261112): 새 수납함을 사기 전, 문구의 사용 가능 여부와 예비 수량을 확인하는 다섯 단계 정리법입니다.
 - [경매로 물건을 팔던 제가 직접 소싱을 시작한 이유](https://github-funny-d-update-20260829.vercel.app/story/post.html?id=from-auctions-to-sourcing): 경매로 확보한 문구류를 판매하며 저렴하게 구하는 것만으로는 충분하지 않다는 걸 배웠습니다. 이제는 가격만큼 쓸모 있는 상품을 직접 고르는 기준을 만들어가고 있습니다.
 - [카카오프렌즈 DIY 펜꽂이는 겨울철에 어떻게 보관하나요?](https://github-funny-d-update-20260829.vercel.app/story/diy-pen-holder-winter-storage.html): 난방기와 습기를 피해 실내에 두고, 옮기기 전 내용물을 비우는 간단한 겨울철 보관 방법을 정리했습니다.
